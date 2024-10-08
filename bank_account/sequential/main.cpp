@@ -18,7 +18,7 @@ int main() {
   for (int i = 0; i < HOURS; i++) {
     ucsc_pays_tyler();
     tyler_buys_coffee();
-  }
+  } 
 
   cout << "tyler's account balance: " << tylers_account << endl;
   return 0;
