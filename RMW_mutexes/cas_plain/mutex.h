@@ -15,8 +15,10 @@ class mutex {
     bool e = false;
     int acquired = false;
     while (acquired == false) {
-      acquired = atomic_compare_exchange_strong(&flag, &e, true);
+      acquired = atomic_compare_exchange_strong(&flag, &e, true);      
       e = false;
+//       if (acquired == false)
+//          this_thread::yield();
     }
   }
 

@@ -13,9 +13,8 @@ class mutex {
     bool e = false;
     bool acquired = false;
     while (!acquired) {
-      while (flag.load(memory_order_relaxed) == true) {
+      while (flag.load(memory_order_relaxed) == true) 
          this_thread::yield();
-      }
       e = false;
       acquired = atomic_compare_exchange_strong(&flag, &e, true);
     }

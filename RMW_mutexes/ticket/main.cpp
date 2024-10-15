@@ -5,7 +5,8 @@
 using namespace std;
 using namespace chrono;
 
-#define SECONDS 1
+int num_threads = 8;
+int runtime = 1;
 
 int total_number = 0;
 int *histogram;
@@ -15,7 +16,7 @@ my::mutex m;
 void test_mutex(int thread_id) {
   auto start = high_resolution_clock::now();
   int duration = 0.0;
-  while (duration < SECONDS) {
+  while (duration < runtime) {
     
     // Perform the lock and unlock
     m.lock(thread_id);
@@ -23,7 +24,7 @@ void test_mutex(int thread_id) {
     histogram[thread_id]++;
     m.unlock(thread_id);
     
-    // Update the timer
+    // Update the runtimer
     auto now = high_resolution_clock::now();
     duration = duration_cast<seconds>(now - start).count();      
   }
@@ -31,11 +32,11 @@ void test_mutex(int thread_id) {
 
 int main(int argc, char *argv[]) {
 
-  int num_threads = 8;
-  if (argc == 2) {
-    num_threads = atoi(argv[1]);   
-  }
-
+  if (argc >= 2)
+    num_threads = atoi(argv[1]);
+  if (argc >= 3)
+    runtime = atoi(argv[2]);
+  
   thread *thread_array = new thread[num_threads];
 
   histogram = new int[num_threads];
@@ -50,9 +51,8 @@ int main(int argc, char *argv[]) {
 
   cout << "total number: " << total_number << endl;
 
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     cout << i << ":histogram: " << histogram[i] << endl;
-  }
 
 
   delete[] thread_array;

@@ -8,3 +8,4 @@ clean:
 run:
 	time -p ./main 8
 	time -p ./main 64
+# 	time -p ./main 64 20

@@ -32,31 +32,25 @@ void test_mutex(int thread_id) {
 int main(int argc, char *argv[]) {
 
   int num_threads = 8;
-  if (argc == 2) {
+  if (argc == 2)
     num_threads = atoi(argv[1]);   
-  }
 
   thread *thread_array = new thread[num_threads];
 
   histogram = new int[num_threads];
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     histogram[i] = 0;
-  }
 
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     thread_array[i] = thread(test_mutex, i);
-  }
 
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     thread_array[i].join();
-  }
 
   cout << "total number: " << total_number << endl;
 
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     cout << i << ":histogram: " << histogram[i] << endl;
-  }
-
 
   delete[] thread_array;
   delete[] histogram;

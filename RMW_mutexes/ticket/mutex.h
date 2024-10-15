@@ -14,7 +14,8 @@ class mutex {
     
   void lock(int thread_id) {
     int my_num = atomic_fetch_add(&counter, 1);
-    while (my_num != now_serving.load());
+    while (my_num != now_serving.load())
+       this_thread::yield();
   }
   
   void unlock(int thread_id) {
