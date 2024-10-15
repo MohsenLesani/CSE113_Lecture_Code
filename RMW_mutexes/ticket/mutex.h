@@ -3,6 +3,8 @@
 #include <atomic>
 using namespace std;
 
+namespace my {
+
 class mutex {
  public:
   mutex() {
@@ -25,3 +27,5 @@ class mutex {
   atomic_int counter;
   atomic_int now_serving;
 };
+
+}

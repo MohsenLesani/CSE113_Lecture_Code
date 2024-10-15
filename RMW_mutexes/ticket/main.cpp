@@ -9,7 +9,7 @@ using namespace chrono;
 
 int total_number = 0;
 int *histogram;
-mutex m;
+my::mutex m;
 
 
 void test_mutex(int thread_id) {
@@ -39,17 +39,14 @@ int main(int argc, char *argv[]) {
   thread *thread_array = new thread[num_threads];
 
   histogram = new int[num_threads];
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     histogram[i] = 0;
-  }
 
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     thread_array[i] = thread(test_mutex, i);
-  }
 
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     thread_array[i].join();
-  }
 
   cout << "total number: " << total_number << endl;
 

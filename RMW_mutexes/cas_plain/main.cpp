@@ -9,7 +9,7 @@ using namespace chrono;
 
 int total_number = 0;
 int *histogram;
-mutex m;
+my::mutex m;
 
 
 void test_mutex(int thread_id) {

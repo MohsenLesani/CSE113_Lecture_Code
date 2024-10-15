@@ -8,3 +8,9 @@ all:
 clean:
 # 	rm *~ main 
 	rm *~ main main_sequential main_threaded main_threaded_padded
+
+run:
+	time -p ./main_sequential 
+	time -p ./main_threaded
+	time -p ./main_threaded_padded
+
