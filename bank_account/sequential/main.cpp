@@ -13,6 +13,7 @@ void tyler_buys_coffee() {
   tylers_account -= 1;
 }
 
+
 int main() {
 
   for (int i = 0; i < HOURS; i++) {

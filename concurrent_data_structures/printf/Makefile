@@ -5,3 +5,6 @@ all:
 
 clean:
 	rm -f *~ main tmp.txt
+
+run:
+	time -p ./main > tmp.txt

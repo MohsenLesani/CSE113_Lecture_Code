@@ -4,3 +4,6 @@ all:
 
 clean:
 	rm -f *~ main
+
+run:
+	time -p ./main

@@ -9,7 +9,7 @@ int main() {
   for (int i = 0; i < ITERATIONS; i++) {
     for (int j = 0; j < INNER_ITERATIONS; j++) {      
       printf("x");
-//       fflush(stdout);
+      fflush(stdout);
     }
     printf("\n");
   }

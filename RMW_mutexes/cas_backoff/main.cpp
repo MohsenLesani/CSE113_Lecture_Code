@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include "mutex.h"
+// #include "mutex.h"
 using namespace std;
 using namespace chrono;
 
@@ -9,6 +9,7 @@ using namespace chrono;
 
 int total_number = 0;
 int *histogram;
+// my::mutex m;
 mutex m;
 
 

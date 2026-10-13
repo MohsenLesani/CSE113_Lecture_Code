@@ -8,14 +8,15 @@ void increment_array(int *a, int a_size, int tid, int num_threads) {
    } 
 }
 
-#define THREADS 8 
-#define A_SIZE 1024 
+#define THREADS 1
+// #define THREADS 8 
+#define A_SIZE 10240 
 int main() { 
   int *a = new int[A_SIZE];
 
   // initialize a
   for (int i = 0; i < A_SIZE; i++)
-    a[i] = 0;  
+    a[i] = 0;
 
   // Create a pointer to an array of threads
   thread thread_ar[THREADS];

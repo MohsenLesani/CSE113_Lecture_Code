@@ -13,13 +13,13 @@ int r1 = 0;
 
 void thread0() {
   x = 1;
-//   FENCE;
+  FENCE;
   r1 = y;
 }
 
 void thread1() {
   y = 1;
-//   FENCE;
+  FENCE;
   r0 = x;
 }
 

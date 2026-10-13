@@ -39,13 +39,12 @@ int main(int argc, char *argv[]) {
 
   auto time_start = high_resolution_clock::now();
 
-  for (int i = 0; i < num_threads; i++) {
-    thread_array[i] = thread(vec_add, a, b, c, SIZE, i, num_threads);
-  }
+  for (int i = 0; i < num_threads; i++)
+    thread_array[i] = thread(vec_add, a, b, c, SIZE, i, num_threads);  
   
-  for (int i = 0; i < num_threads; i++) {
+  for (int i = 0; i < num_threads; i++)
     thread_array[i].join();
-  }
+  
   
   auto time_end = high_resolution_clock::now();
   auto time_duration = duration_cast<nanoseconds>(time_end - time_start);

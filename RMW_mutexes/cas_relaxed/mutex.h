@@ -3,6 +3,9 @@
 #include <atomic>
 using namespace std;
 
+
+namespace my {
+
 class mutex {
  public:
   mutex() {
@@ -26,3 +29,5 @@ class mutex {
  private:
   atomic_bool flag;
 };
+
+}

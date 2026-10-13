@@ -47,7 +47,7 @@ void tyler_buys_coffee() {
 
 void ucsc_audit() {
   for (int i = 0; i < NUM_AUDITS; i++) {
-//     tylers_personal_account_mutex.lock();
+    // tylers_personal_account_mutex.lock();
     tylers_business_account_mutex.lock();
     tylers_personal_account_mutex.lock();
 
