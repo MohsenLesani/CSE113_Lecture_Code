@@ -10,7 +10,7 @@ class mutex {
   mutex() {
     flag = 0;
   }
-    
+
   void lock() {
     bool e = false;
     int acquired = false;
