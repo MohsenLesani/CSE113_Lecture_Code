@@ -6,6 +6,7 @@ using namespace std;
 using namespace chrono;
 
 #define SECONDS 1
+#define WORK 1000
 
 int total_number = 0;
 int *histogram;
@@ -21,6 +22,12 @@ void test_mutex(int thread_id) {
     m.lock();
     total_number++;
     histogram[thread_id]++;
+    // Critical section work, see WORK above. volatile keeps the compiler
+    // from folding the loop away at -O2.
+    volatile unsigned x = thread_id;
+    for (int i = 0; i < WORK; i++) {
+      x = x * 1664525u + 1013904223u;
+    }
     m.unlock();
     
     // Update the timer
@@ -34,7 +41,9 @@ int main(int argc, char *argv[]) {
   // Number of cores
   // sysctl -n hw.ncpu
 
-  int num_threads = 8;
+  // int num_threads = 8;
+  int num_threads = 12; // Not to hit the efficiency cores with special scheduling.
+  // int num_threads = 16;
   // int num_threads = 64;
 
   if (argc == 2)

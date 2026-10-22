@@ -1,6 +1,6 @@
 
 all:
-	clang++ main.cpp -std=c++11 -pthread -o main
+	clang++ main.cpp -O2 -std=c++11 -pthread -o main
 
 clean:
 	rm -f *~ main

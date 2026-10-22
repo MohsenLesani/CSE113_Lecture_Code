@@ -6,6 +6,8 @@ using namespace std;
 using namespace chrono;
 
 #define SECONDS 1
+#define WORK 1000
+// Work inside the critical section: WORK dependent integer operations, one to two microseconds. With an empty critical section the peeking spinners in cas_relaxed never settle into reading their local copy: every release wakes all of them at once and the next release waits behind that burst. A critical section of a microsecond or more lets them settle, and then cas_relaxed beats cas_plain clearly at 16 threads. Set WORK to 0 to see the empty critical section again.
 
 int total_number = 0;
 int *histogram;
@@ -21,6 +23,12 @@ void test_mutex(int thread_id) {
     m.lock();
     total_number++;
     histogram[thread_id]++;
+    // Critical section work, see WORK above. volatile keeps the compiler
+    // from folding the loop away at -O2.
+    volatile unsigned x = thread_id;
+    for (int i = 0; i < WORK; i++) {
+      x = x * 1664525u + 1013904223u;
+    }
     m.unlock();
     
     // Update the timer
@@ -31,7 +39,11 @@ void test_mutex(int thread_id) {
 
 int main(int argc, char *argv[]) {
 
-  int num_threads = 8;
+  // int num_threads = 8;
+  int num_threads = 12; // Not to hit the efficiency cores with special scheduling.
+  // int num_threads = 16;
+  // int num_threads = 64;
+  
   if (argc == 2) {
     num_threads = atoi(argv[1]);   
   }
