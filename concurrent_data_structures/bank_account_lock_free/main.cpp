@@ -5,17 +5,17 @@ using namespace std;
 
 #define HOURS (1024 * 1024)
 
-bank_account tylers_account;
+bank_account account;
 
 void buy_many_coffees() {
   for (int i = 0; i < HOURS; i++) {
-    tylers_account.buy_coffee();
+    account.buy_coffee();
   }
 }
 
 void work_at_ucsc() {
   for (int i = 0; i < HOURS; i++) {
-    tylers_account.work_one_hour();
+    account.work_one_hour();
   }
 }
 
@@ -26,7 +26,7 @@ int main() {
   coffee.join();
   work.join();
 
-  cout << "balance: " << tylers_account.get_balance() << endl;;
+  cout << "balance: " << account.get_balance() << endl;;
   return 0;
 
   

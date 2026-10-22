@@ -1,4 +1,4 @@
-#include <iostream> 
+#include <iostream>
 #include <thread>
 #include <chrono>
 #include "mutex.h"
@@ -31,7 +31,12 @@ void test_mutex(int thread_id) {
 
 int main(int argc, char *argv[]) {
 
+  // Number of cores
+  // sysctl -n hw.ncpu
+
   int num_threads = 8;
+  // int num_threads = 64;
+
   if (argc == 2)
     num_threads = atoi(argv[1]);   
 

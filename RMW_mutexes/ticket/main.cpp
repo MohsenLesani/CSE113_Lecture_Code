@@ -6,6 +6,7 @@ using namespace std;
 using namespace chrono;
 
 int num_threads = 8;
+// int num_threads = 64;
 int runtime = 1;
 
 int total_number = 0;
