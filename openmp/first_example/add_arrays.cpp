@@ -15,14 +15,16 @@ int main(int argc, char ** argv) {
     c[i] = b[i] = a[i] = 0;
   }
 
-  int num_threads = 8;
+  int num_threads = 4;
+  // int num_threads = 8;
   if (argc > 1) {
     num_threads = atoi(argv[1]);
   }
   std::cout << "num threads " << num_threads << std::endl;
-
+  
   omp_set_num_threads(num_threads);
 
+  
 
   auto start = std::chrono::high_resolution_clock::now();
 
@@ -40,3 +42,4 @@ int main(int argc, char ** argv) {
   double seconds = duration.count()/1000000000.0;
   std::cout << "time (seconds): " << seconds << std::endl;
 }
+

@@ -8,8 +8,10 @@
 // ScheduleType t = static_t;
 
 int main(int argc, char **argv) {
+  
   float* result_parallel = new float[SIZE];
   int* mult = new int[SIZE];
+  
   for (int i = 0; i < SIZE; i++) {
     result_parallel[i] = i;
   }
@@ -27,14 +29,14 @@ int main(int argc, char **argv) {
   // Launch NUM_THREADS threads and then join them
 
   auto start = std::chrono::high_resolution_clock::now();
-
+  
 // #pragma omp parallel for
 // #pragma omp parallel for schedule(dynamic)
-#pragma omp parallel for schedule(dynamic, 64)
+// #pragma omp parallel for schedule(dynamic, 64)
   for (int i = 0; i < SIZE; i++) {
     float base = result_parallel[i];
     for (int w = 0; w < mult[i]-1; w++) {
-      result_parallel[i] = result_parallel[i]+base;
+      result_parallel[i] += base;
     }
   }
 
